@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/react.development.js"></script>
+    <script src="./lib/react-dom.development.js"></script>
+    <script src="./lib/babel.min.js"></script>
+</head>
+<body>
+    <h2>前端JS框架列表</h2>
+    <div id="example1"></div>
+
+    <script type="text/babel">
+        const names = ['jQuery', 'zepto', 'angular', 'react', 'vue'];
+        // 1 创建虚拟DOM
+        const ul = (<ul>
+            {
+                names.map((name, index) => <li key={index}>{name}</li>)
+            }
+            </ul>);
+        // 2 渲染虚拟DOM
+        ReactDOM.render(ul, document.getElementById('example1'));
+    </script>
+</body>
+</html>

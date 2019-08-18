@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/react.development.js"></script>
+    <script src="./lib/react-dom.development.js"></script>
+    <script src="./lib/prop-types.js"></script>
+    <script src="./lib/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="example"></div>
+
+    <script type="text/babel">
+        class Life extends React.Component {
+            constructor(props) {
+                super(props);
+                // 初始化状态
+                this.state = {
+                    opacity: 1
+                };
+                this.distroyComponent = this.distroyComponent.bind(this);
+            }
+
+            componentDidMount(){
+                // 启动循环定时器
+                this.intervalId = setInterval(function(){
+                    console.log('定时器执行...');
+                    let {opacity} = this.state;
+                    opacity -= 0.1;
+                    if (opacity <=0){
+                        opacity = 1;
+                    }
+                    this.setState({opacity});
+                }.bind(this),200);
+            }
+
+            distroyComponent(){
+                ReactDOM.unmountComponentAtNode(
+                    document.getElementById('example')
+                );
+            }
+
+            componentWillUnmount(){
+                // 清理定时器
+                clearInterval(this.intervalId);
+            }
+
+            render() {
+                const { opacity } = this.state;
+                return (
+                    <div>
+                        <h2 style={{ opacity: opacity }}>{this.props.msg}</h2>
+                        <button onClick={this.distroyComponent}>消失</button>
+                    </div>
+                )
+            }
+
+        }
+
+        ReactDOM.render(<Life msg="大脚脚好可爱" />, document.getElementById('example'));
+
+    </script>
+</body>
+
+</html>

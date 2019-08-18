@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/react.development.js"></script>
+    <script src="./lib/react-dom.development.js"></script>
+    <script src="./lib/babel.min.js"></script>
+</head>
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+
+    <script>
+        const msg = 'Ken Ken';
+        const myId = 'BBX';
+
+        // var element = React.createElement('h1',{id:"myTitle"},'hello')
+        const vDom1 = React.createElement('h2',{id:myId.toLowerCase()},msg.toUpperCase());
+        ReactDOM.render(vDom1,document.getElementById('test1'));
+    </script>
+
+    <script type="text/babel">
+        const vDom2 = <h3 id={myId.toUpperCase()}>{msg.toLowerCase()}</h3>;
+        ReactDOM.render(vDom2,document.getElementById('test2'));
+    </script>
+</body>
+</html>
